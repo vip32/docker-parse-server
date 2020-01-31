@@ -34,7 +34,7 @@ services:
       - PARSE_DASHBOARD_USER_ID=admin
       - PARSE_DASHBOARD_USER_PASSWORD=admin
     ports:
-      - 4040:4040
+      - 4040:4040 # http://localhost:4040/apps
 
 volumes:
   mongo:
