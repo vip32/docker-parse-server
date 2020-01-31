@@ -1,0 +1,23 @@
+# REST API docs https://docs.parseplatform.org/rest/guide/
+
+### DASHBOARD
+GET http://localhost:4040/apps/TEST_APP
+X-Parse-Application-Id: TEST_APP
+X-Parse-REST-API-Key: DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+
+### GET SCHEMAS (API)
+GET http://127.0.0.1:1337/parse/schemas
+X-Parse-Application-Id: TEST_APP
+X-Parse-Master-Key: DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+
+### GET ALL PRODUCTS (API)
+GET http://127.0.0.1:1337/parse/classes/_Product
+X-Parse-Application-Id: TEST_APP
+# X-Parse-REST-API-Key: DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+X-Parse-Master-Key: DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+
+### GET SINGLE PRODUCT (API)
+GET http://127.0.0.1:1337/parse/classes/_Product/sAxHZwDN6v
+X-Parse-Application-Id: TEST_APP
+# X-Parse-REST-API-Key: DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+X-Parse-Master-Key: DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD

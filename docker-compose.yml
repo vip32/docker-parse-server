@@ -1,0 +1,41 @@
+# https://parseplatform.org/
+# https://docs.parseplatform.org/rest/guide/
+# https://github.com/parse-community/Parse-SDK-JS
+# https://github.com/parse-community/Parse-SDK-dotNET
+
+version: "3"
+services:
+  mongo-parse-server:
+    image: mongo
+    # ports:
+    #   - 27018:27017
+    volumes:
+      - mongo:/data/db
+
+  parse-server:
+    image: parseplatform/parse-server # https://github.com/parse-community/parse-dashboard#run-with-docker
+    links:
+      - mongo-parse-server:mongo
+    environment:
+      - PARSE_SERVER_APPLICATION_ID=TEST_APP
+      - PARSE_SERVER_MASTER_KEY=DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+      - PARSE_SERVER_DATABASE_URI=mongodb://mongo-parse-server:27017/dev
+      - PARSE_SERVER_URL=http://parse-server:1337/parse
+    ports:
+      - 1337:1337
+
+  parse-dashboard:
+    image: parseplatform/parse-dashboard # https://github.com/parse-community/parse-dashboard#run-with-docker
+    environment:
+      - PARSE_DASHBOARD_SERVER_URL=http://127.0.0.1:1337/parse # used by (client) browser to call server api
+      - PARSE_DASHBOARD_ALLOW_INSECURE_HTTP=1
+      - PARSE_DASHBOARD_APP_ID=TEST_APP
+      - PARSE_DASHBOARD_MASTER_KEY=DA5AC2FF-8F44-4082-8E5C-A78F2A96ACAD
+      - PARSE_DASHBOARD_USER_ID=admin
+      - PARSE_DASHBOARD_USER_PASSWORD=admin
+    ports:
+      - 4040:4040
+
+volumes:
+  mongo:
+    driver: local
